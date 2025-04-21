@@ -1,0 +1,106 @@
+<div class="row mt-5">
+    <div class="col-md-4 mb-3" *ngFor="let event of events">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">{{event.name}}</h5>
+          <p class="card-text">{{event.description}}</p>
+          <button class="btn btn-primary" 
+          data-bs-toggle="modal" 
+          data-bs-target="#admissionModal" 
+          (click)="openForm(event)">
+    Take Admission
+  </button>
+        <div class="card-footer text-muted">
+          {{event.Teacher}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="admissionModal" tabindex="-1" aria-labelledby="admissionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Admission Form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form [formGroup]="admissionForm" (ngSubmit)="submitForm()">
+        <div class="modal-body">
+          <div class="row g-3">
+
+            
+            <!-- First Name -->
+            <div class="col-md-4">
+              <input type="text" class="form-control" placeholder="First Name *" formControlName="firstName" required>
+              <div *ngIf="submitted && f['firstName'].errors" class="text-danger">Please fill out this field</div>
+            </div>
+            <!-- Middle Name -->
+            <div class="col-md-4">
+              <input type="text" class="form-control" placeholder="Middle Name" formControlName="middleName" required>
+              <div *ngIf="submitted && f['middleName'].errors" class="text-danger">Please fill out this field</div>
+            </div>
+            <!-- Last Name -->
+            <div class="col-md-4">
+              <input type="text" class="form-control" placeholder="Last Name *" formControlName="lastName" required>
+              <div *ngIf="submitted && f['lastName'].errors" class="text-danger">Please fill out this field</div>
+            </div>
+
+            <!-- Phone -->
+            <div class="col-md-6">
+              <input type="tel" class="form-control" placeholder="Phone Number (10 digits only)*" formControlName="phone" required maxlength="10">
+              <div *ngIf="submitted && f['phone'].errors" class="text-danger">
+                Phone number must be 10 digits.
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+              <input type="email" class="form-control" placeholder="Email *" formControlName="email" required>
+              <div *ngIf="submitted && f['email'].errors" class="text-danger">Please enter a valid email</div>
+            </div>
+
+            <!-- Education -->
+            <div class="col-md-6">
+              <input type="text" class="form-control" placeholder="Education e.g. BCA, MCA, etc.. *" formControlName="education" required>
+              <div *ngIf="submitted && f['education'].errors" class="text-danger">This field is required</div>
+            </div>
+
+            <!-- College / Company -->
+            <div class="col-md-6">
+              <input type="text" class="form-control" placeholder="College/Company *" formControlName="college" required>
+              <div *ngIf="submitted && f['college'].errors" class="text-danger">This field is required</div>
+            </div>
+
+            <!-- Address -->
+            <div class="col-12">
+              <textarea class="form-control" rows="3" placeholder="Address *" formControlName="address" required></textarea>
+              <div *ngIf="submitted && f['address'].errors" class="text-danger">This field is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer pt-4">
+          <button type="submit" class="btn btn-success w-100">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Success</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Admission form submitted successfully!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
