@@ -25,13 +25,11 @@ app.get('/api/hello', (req, res) => {
   res.json({ message: 'Hello from backend!' });
 });
 
-/*
 // 👇 For Angular routing
 app.get('*', (req, res) => {
   console.log("Wildcard route called for:", req.url);
   res.sendFile(path.join(__dirname, '../dist/event/browser/index.html'));
 });
-*/
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
