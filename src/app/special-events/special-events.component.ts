@@ -58,7 +58,7 @@ export class SpecialEventsComponent implements OnInit
   }
 
   fetchEvents() {
-    this.http.get<any[]>('http://localhost:3000/api/events').subscribe({
+    this.http.get<any[]>('/api/events').subscribe({
       next: (data) => {
         this.specialEvents = data;
       },
@@ -86,7 +86,7 @@ export class SpecialEventsComponent implements OnInit
       }
   
       // Replace this with your actual API path from api.js
-      const API_URL = 'http://localhost:3000/api/admission'; // example
+      const API_URL = '/api/admission'; // example
   
       this.http.post(API_URL, this.admissionForm.value).subscribe({
         next: (res) => {
